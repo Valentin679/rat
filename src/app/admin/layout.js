@@ -1,6 +1,15 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+//echo "# rat" >> README.md
+// git init
+// git add README.md
+// git commit -m "first commit"
+// git branch -M main
+// git remote add origin https://github.com/Valentin679/rat.git
+// git push -u origin main
+
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
