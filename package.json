@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "mongo": "^0.1.0",
+=======
+>>>>>>> a82106ae2a815444b69a31e2342202390f1f4571
     "mongodb": "^6.8.0",
     "mongoose": "^8.5.2",
     "next": "14.2.5",
