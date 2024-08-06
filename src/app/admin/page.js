@@ -1,8 +1,7 @@
 
 import styles from "./admin.module.css";
 import {MongoClient} from "mongodb";
-import MenuItem from "@/app/admin/Menu/MenuItem";
-import MenuItemAdd from "@/app/admin/Menu/MenuItemAdd";
+import Header from "@/app/admin/components/modules/Header/Header";
 
 const client = new MongoClient("mongodb+srv://admin:12345asd@rat.gk7dz4o.mongodb.net/?appName=rat");
 
@@ -44,17 +43,13 @@ export default function Page() {
         return (
             <main className={styles.main}>
                 <h2>admin</h2>
-                <div className={styles.description}>
-                    <div className='menuItemList'>
-                        {menu.map(e => <MenuItem key={e.title} title={e.title}/>)}
-                    </div>
-                    <div className='addMenuItem'>
-                        <MenuItemAdd/>
-                    </div>
-                </div>
+                <Header menu={menu}/>
             </main>
         )
     } else {
         <p>f</p>
     }
 }
+export const getStaticProps = () => ({
+    props: {menu},
+})
