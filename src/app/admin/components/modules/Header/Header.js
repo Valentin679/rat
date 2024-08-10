@@ -1,4 +1,4 @@
-'use client'
+
 import styles from "@/app/admin/admin.module.css";
 import MenuItem from "@/app/admin/components/modules/Header/Menu/MenuItem";
 
