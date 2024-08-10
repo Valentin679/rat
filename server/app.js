@@ -14,7 +14,7 @@ app.use(cors());
 // const menuScheme = new Schema({id: String, title: String}, {versionKey: false});
 // const User = mongoose.model("Menu", menuScheme);
 const client = new MongoClient("mongodb+srv://admin:12345asd@rat.gk7dz4o.mongodb.net/?appName=rat");
-async function main() {
+async function server() {
 
     try{
         await client.connect();
@@ -79,7 +79,7 @@ app.get("/api/users/:id", async(req, res)=>{
 //     else res.sendStatus(404);
 // });
 
-main().then(r => console.log('good'));
+server().then(r => console.log('good'));
 // прослушиваем прерывание работы программы (ctrl-c)
 process.on("SIGINT", async() => {
 
