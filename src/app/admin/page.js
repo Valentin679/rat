@@ -1,44 +1,33 @@
-
+'use client'
 import styles from "./admin.module.css";
-import {MongoClient} from "mongodb";
 import Header from "@/app/admin/components/modules/Header/Header";
-
-const client = new MongoClient("mongodb+srv://admin:12345asd@rat.gk7dz4o.mongodb.net/?appName=rat");
-
-let menu = []
-let pending = true
-
-async function run() {
-    try {
-        // Подключаемся к серверу
-        await client.connect();
-        // обращаемся к базе данных admin
-        const db = client.db("Menu");
-        const collectionNav = db.collection("nav");
-        const count = await collectionNav.countDocuments();
-        // выполняем пинг для проверки подключения
-        // const result = await db.command({ ping: 1 });
-        console.log("Подключение с сервером успешно установлено");
-        const navList = await collectionNav.find().toArray();
-        // menu.push(navList[0])
-        menu = navList
-        // console.log(count);
-        console.log(menu);
-        pending = false
-    } catch (err) {
-        console.log("Возникла ошибка");
-        console.log(err);
-    } finally {
-        // Закрываем подключение при завершении работы или при ошибке
-        await client.close();
-        console.log("Подключение закрыто");
-    }
-}
-
-run().catch(console.error);
-
+import {useEffect, useState} from "react";
 
 export default function Page() {
+    const [menu, setMenu] = useState()
+    const [pending, setPending] = useState(true)
+
+    async function GetUsers() {
+// отправляет запрос и получаем ответ
+        const response = await fetch("http://localhost:8000/api/users", {
+            method: "GET",
+            headers: { "Accept": "application/json" }
+        });
+        // если запрос прошел нормально
+        if (response.ok === true) {
+            // получаем данные
+            let menuList = await response.json();
+            console.log(menuList)
+            setPending(false)
+            return menuList
+        }
+    }
+
+    useEffect(() => {
+        GetUsers().then((menu)=>{
+            setMenu(menu)
+        })
+    }, []);
     if (pending === false) {
         return (
             <main className={styles.main}>
@@ -50,6 +39,3 @@ export default function Page() {
         <p>f</p>
     }
 }
-export const getStaticProps = () => ({
-    props: {menu},
-})
