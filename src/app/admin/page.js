@@ -31,7 +31,7 @@ export default function Page() {
     if (pending === false) {
         return (
             <main className={styles.main}>
-                <h2>admin</h2>
+                <h2>Админка</h2>
                 <Header menu={menu}/>
             </main>
         )
