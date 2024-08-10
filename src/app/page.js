@@ -1,24 +1,6 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 
-
-let users
-async function GetUsers() {
-// отправляет запрос и получаем ответ
-  const response = await fetch("http://localhost:8000/api/users", {
-    method: "GET",
-    headers: { "Accept": "application/json" }
-  });
-  // если запрос прошел нормально
-  if (response.ok === true) {
-    // получаем данные
-    // const users = await response.json();
-    // users = await response
-    console.log(response)
-  }
-}
-
-GetUsers()
 export default function Home() {
 
 
