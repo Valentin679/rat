@@ -10,7 +10,7 @@ export default function Page() {
     async function GetUsers() {
 // отправляет запрос и получаем ответ
 //         const response = await fetch("http://localhost:8000/api/users", {
-        const response = await fetch("https://rat-three.vercel.app/api/users", {
+        const response = await fetch("https://ratapi.vercel.app/api/users", {
             method: "GET",
             headers: { "Accept": "application/json" }
         });
