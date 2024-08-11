@@ -1,0 +1,25 @@
+.header {
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+}
+
+.nav>li {
+    text-decoration: none;
+    list-style: none;
+    margin: 0 6px;
+    padding: 0 2px;
+    transition: .3s cubic-bezier(.25,.8,.5,1);
+    font-size: 14px;
+    font-weight: bold;
+}
+.nav>li:hover:active {
+color: #517583
+}
