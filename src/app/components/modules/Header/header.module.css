@@ -6,20 +6,29 @@
     padding: 28px;
 }
 
+.logo {
+    max-width: 300px;
+}
+
 .nav {
     display: flex;
     flex-direction: row;
 }
 
-.nav>li {
+.nav > li {
     text-decoration: none;
     list-style: none;
     margin: 0 6px;
-    padding: 0 2px;
-    transition: .3s cubic-bezier(.25,.8,.5,1);
+    padding: 2px;
+    transition: .3s cubic-bezier(.25, .8, .5, 1);
     font-size: 14px;
+    letter-spacing: 1.5px;
     font-weight: bold;
+
 }
-.nav>li:hover:active {
-color: #517583
+
+.nav > li:hover {
+    color: #517583;
+    /*text-decoration: underline;*/
+    border-bottom: 1px solid #517583;
 }

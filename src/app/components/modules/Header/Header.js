@@ -1,9 +1,21 @@
 import styles from "@/app/components/modules/Header/header.module.css";
+import logo from "/public/logo-300x254.png";
+import Image from "next/image";
+import { IoCartOutline } from "react-icons/io5";
 
 export default function Header({title}) {
     return (
         <header className={styles.header}>
-            <div>LOGO</div>
+            <div className={styles.logo}>
+                <Image
+                    src={logo}
+                    alt="Logo"
+                    className={styles.logo}
+                    width={50}
+                    // height={100}
+                    priority
+                />
+            </div>
             <nav>
                 <ul className={styles.nav}>
                     <li>Магазин</li>
@@ -14,7 +26,11 @@ export default function Header({title}) {
                     <li>Контакты</li>
                 </ul>
             </nav>
-            <div>Cart</div>
+            <div>
+                <IoCartOutline
+                size={30}
+                />
+            </div>
         </header>
     );
 }
