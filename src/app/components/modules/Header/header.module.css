@@ -1,21 +1,24 @@
 
 .header {
-    border: 1px solid black;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 28px;
+    background-image: url('/public/bg.jpg');
+    background-size: cover;
 }
 
 .logo {
     max-width: 300px;
     font-family: 'Druk Wide Cy Web Bold Regular', sans-serif;
-    /*font-family: 'DrukWideCyr-Bold', sans-serif;*/
     font-weight: bold;
+}
+.logo>a {
     display: flex;
     align-items: center;
 }
-.logo>h1 {
+
+.logo h1 {
     font-size: 28px;
     margin-left: 20px;
 }

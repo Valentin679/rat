@@ -3,7 +3,7 @@ import "./globals.css";
 import localFont from 'next/font/local';
 import Header from "@/app/components/modules/Header/Header";
 
-const druBold = localFont({ src: '../../fonts/DrukWideBold.ttf' })
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {

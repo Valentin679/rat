@@ -2,6 +2,7 @@ import styles from "@/app/components/modules/Header/header.module.css";
 import logo from "/public/logo-300x254.png";
 import Image from "next/image";
 import { IoCartOutline } from "react-icons/io5";
+import Background from '/public/bg.jpg'
 
 export default function Header({title}) {
     return (
@@ -16,8 +17,8 @@ export default function Header({title}) {
                     // height={100}
                     priority
                 />
-                </a>
                 <h1>МИСТЕР РЭТ</h1>
+                </a>
             </div>
             <nav>
                 <ul className={styles.nav}>
@@ -29,11 +30,11 @@ export default function Header({title}) {
                     <li>КОНТАКТЫ</li>
                 </ul>
             </nav>
-            <div className={styles.cartIcon}>
-                <IoCartOutline
-                size={30}
-                />
-            </div>
+            {/*<div className={styles.cartIcon}>*/}
+            {/*    <IoCartOutline*/}
+            {/*    size={40}*/}
+            {/*    />*/}
+            {/*</div>*/}
         </header>
     );
 }
