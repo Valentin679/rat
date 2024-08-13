@@ -94,6 +94,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  font-family: 'Druk Wide Cy Web Bold Regular', sans-serif;
 }
 
 a {
