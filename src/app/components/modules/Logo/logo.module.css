@@ -1,0 +1,19 @@
+.logo {
+    padding: 15px 0;
+}
+
+.logo img {
+    margin-right: 20px;
+}
+.logo p{
+    margin-top: 5px;
+    font-size: 11px;
+}
+.logo>a {
+    display: flex;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 32px;
+}

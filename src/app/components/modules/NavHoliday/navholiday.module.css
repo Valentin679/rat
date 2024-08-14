@@ -1,0 +1,9 @@
+.navHoliday {
+    background-color: #73A8BC;
+    color: white;
+    font-size: 14px;
+    display: flex;
+}
+.navHoliday div{
+    padding: 15px 20px;
+}
