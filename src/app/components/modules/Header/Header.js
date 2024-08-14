@@ -7,29 +7,34 @@ import Background from '/public/bg.jpg'
 export default function Header({title}) {
     return (
         <header className={styles.header}>
-            <div className={styles.logo}>
-                <a href='/'>
-                <Image
-                    src={logo}
-                    alt="Logo"
-                    className={styles.logo}
-                    width={80}
-                    // height={100}
-                    priority
-                />
-                <h1>МИСТЕР РЭТ</h1>
-                </a>
-            </div>
-            <nav>
-                <ul className={styles.nav}>
-                    <li>МАГАЗИН</li>
-                    <li>КОНСТРУКТОР</li>
-                    <li>О НАС</li>
-                    <li>ПОДАРКИ</li>
-                    <li>ГДЕ КУПИТЬ</li>
+            <nav className={styles.nav}>
+
+
+                <ul className={styles.navLeft}>
+                    <li>ДОСТАВКА И ОПЛАТА</li>
                     <li>КОНТАКТЫ</li>
                 </ul>
+                <ul className={styles.navRight}>
+
+                    <li>МАГАЗИН</li>
+                    <li>КОНСТРУКТОР</li>
+                    <li>ПОДАРКИ</li>
+                    <li>+7 (900) 228-67-15</li>
+                </ul>
             </nav>
+            <div className={styles.logo}>
+                <a href='/'>
+                    <Image
+                        src={logo}
+                        alt="Logo"
+                        className=''
+                        width={50}
+                        // height={100}
+                        priority
+                    />
+                    <h1>МИСТЕР РЭТ</h1>
+                </a>
+            </div>
             {/*<div className={styles.cartIcon}>*/}
             {/*    <IoCartOutline*/}
             {/*    size={40}*/}
