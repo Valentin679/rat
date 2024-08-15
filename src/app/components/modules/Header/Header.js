@@ -26,13 +26,13 @@ export default function Header({title}) {
                         <li>ПОДАРКИ</li>
                     </ul>
                     <ul className={styles.navSocial}>
-                        <li><SlSocialVkontakte
+                        <li className={styles.navSocialIcons}><SlSocialVkontakte
                             size={25}
                         /></li>
-                        <li><LiaTelegram
+                        <li className={styles.navSocialIcons}><LiaTelegram
                             size={25}
                         /></li>
-                        <li>8 (900) 228-67-15</li>
+                        <li className={styles.navPhone}>8 (900) 228-67-15</li>
                     </ul>
                 </div>
             </nav>
