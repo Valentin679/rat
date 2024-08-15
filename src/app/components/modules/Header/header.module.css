@@ -23,7 +23,7 @@
 
 .nav ul {
     display: flex;
-    align-items: end;
+    align-items: flex-end;
 }
 
 .nav li {

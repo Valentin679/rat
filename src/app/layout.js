@@ -3,6 +3,8 @@ import "./globals.css";
 import localFont from 'next/font/local';
 import Header from "@/app/components/modules/Header/Header";
 import NavHoliday from "@/app/components/modules/NavHoliday/NavHoliday";
+import banner from "../../public/some-chocolates-ai-generated-image.jpg";
+import Image from "next/image";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,6 +22,15 @@ export default function RootLayout({ children }) {
       {/*<body>*/}
       <Header/>
       <NavHoliday/>
+      <div><Image
+          src={banner}
+          alt="Logo"
+          className='banner'
+          // width={1030}
+          // height={500}
+          priority
+      /></div>
+
       <div className='container'>
 
           {children}
