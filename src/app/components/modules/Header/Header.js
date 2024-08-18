@@ -17,13 +17,13 @@ export default function Header({title}) {
             <nav className={styles.nav}>
                 <div className={styles.container}>
                     <ul className={styles.navLeft}>
-                        <li className={golosMedium.className}>ДОСТАВКА И ОПЛАТА</li>
-                        <li>КОНТАКТЫ</li>
+                        <li className={golosMedium.className}><a href='/admin'>ДОСТАВКА И ОПЛАТА</a></li>
+                        <li className={golosMedium.className}>КОНТАКТЫ</li>
                     </ul>
                     <ul className={styles.navRight}>
-                        <li>МАГАЗИН</li>
-                        <li>КОНСТРУКТОР</li>
-                        <li>ПОДАРКИ</li>
+                        <li className={golosMedium.className}>МАГАЗИН</li>
+                        <li className={golosMedium.className}>КОНСТРУКТОР</li>
+                        <li className={golosMedium.className}>ПОДАРКИ</li>
                     </ul>
                     <ul className={styles.navSocial}>
                         <li className={styles.navSocialIcons}><SlSocialVkontakte

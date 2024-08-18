@@ -20,21 +20,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
       {/*<body>*/}
-      <Header/>
-      <NavHoliday/>
-      <div><Image
-          src={banner}
-          alt="Logo"
-          className='banner'
-          // width={1030}
-          // height={500}
-          priority
-      /></div>
-
-      <div className='container'>
 
           {children}
-      </div>
       </body>
     </html>
   );
