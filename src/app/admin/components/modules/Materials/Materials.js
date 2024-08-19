@@ -18,10 +18,20 @@ export default function Materials({categories}) {
         setStateAction && setStateAction(value);
     };
     const addCategory = (slug, title) => {
-        return fetch('https://ratapi.vercel.app/api/categories', {
+        const data = {title: title, slug: slug};
+
+        fetch('https://ratapi.vercel.app/api/categories', {
             method: 'POST',
-            body: {_id: slug, title: title, slug: slug},
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
         })
+            .then((response) => response.text())
+            .then((data) => {
+                console.log('Success:', data);
+            })
+
     }
 // console.log(menu)
     return (
@@ -38,7 +48,7 @@ export default function Materials({categories}) {
 
                     console.log(slug)
                     console.log(title)
-                    addCategory(slug, title).then(r => console.log('send'))
+                    addCategory(slug, title)
                 }
                 }>
                     <div>
