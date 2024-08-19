@@ -2,6 +2,7 @@
 import styles from "./admin.module.css";
 import Header from "@/app/admin/components/modules/Header/Header";
 import {useEffect, useState} from "react";
+import Materials from "@/app/admin/components/modules/Materials/Materials";
 
 export default function Page() {
     const [menu, setMenu] = useState()
@@ -51,6 +52,7 @@ export default function Page() {
             <main className={styles.main}>
                 <h2>Админка</h2>
                 <Header menu={menu}/>
+                <Materials categories={categories}/>
             </main>
         )
     } else {
