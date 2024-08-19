@@ -5,11 +5,10 @@ import {useEffect, useState} from "react";
 
 export default function Page() {
     const [menu, setMenu] = useState()
+    const [categories, setCategories] = useState()
     const [pending, setPending] = useState(true)
 
     async function GetUsers() {
-// отправляет запрос и получаем ответ
-//         const response = await fetch("http://localhost:8000/api/users", {
         const response = await fetch("https://ratapi.vercel.app/api/users", {
             method: "GET",
             headers: { "Accept": "application/json" }
@@ -23,7 +22,25 @@ export default function Page() {
             return menuList
         }
     }
-
+    async function GetCategories() {
+        const response = await fetch("https://ratapi.vercel.app/api/categories", {
+            method: "GET",
+            headers: { "Accept": "application/json" }
+        });
+        // если запрос прошел нормально
+        if (response.ok === true) {
+            // получаем данные
+            let res = await response.json();
+            console.log(res)
+            // setPending(false)
+            return res
+        }
+    }
+    useEffect(() => {
+        GetCategories().then((categories)=>{
+            setCategories(categories)
+        })
+    }, []);
     useEffect(() => {
         GetUsers().then((menu)=>{
             setMenu(menu)
