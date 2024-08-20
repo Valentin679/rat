@@ -17,29 +17,31 @@ export default function Materials({categories}) {
         }[id];
         setStateAction && setStateAction(value);
     };
-    const addCategory = (slug, title) => {
-        const data = {title: title, slug: slug};
-
-        fetch('https://ratapi.vercel.app/api/categories', {
+    const addCategory = async () => {
+        let response = await fetch('http://localhost:8800/api/categories', {
             method: 'POST',
+            //
+            body: JSON.stringify({
+                title: title,
+                slug: slug
+            }),
             headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
+                'Content-type': 'application/json; charset=utf-8'
+            }
         })
-            .then((response) => response.text())
-            .then((data) => {
-                console.log('Success:', data);
-            })
 
+        // response = await response.json()
+
+        alert(JSON.stringify(response))
     }
+
 // console.log(menu)
     return (
 
         <div className={styles.container}>
             <h2>Сырье</h2>
             <div className={styles.itemList}>
-                {/*{categories.map(e => <div key={e.slug} className={styles.item}>{e.title}</div>)}*/}
+                {categories.map(e => <div key={e.slug} className={styles.item}>{e.title}</div>)}
             </div>
             <div className={styles.addItemList}>
                 {/*<MenuItemAdd/>*/}
