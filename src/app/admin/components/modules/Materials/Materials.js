@@ -1,13 +1,12 @@
 import styles from "@/app/admin/components/modules/Materials/materials.module.css";
 import {useRef, useState} from "react";
+import AddMaterials from "@/app/admin/components/modules/Materials/AddMaterials";
 
 export default function Materials({categories}) {
-    const formRef = useRef(null)
-    const inputSlugRef = useRef(null)
-    const inputTitleRef = useRef(null)
-
+    const [oldSlug, setOldSlug] = useState()
     const [slug, setSlug] = useState()
     const [title, setTitle] = useState()
+    const [changedStateId, setChangedStateId] = useState(null)
 
     const onChange = (e) => {
         const {id, value} = e.currentTarget;
@@ -16,51 +15,35 @@ export default function Materials({categories}) {
             title: setTitle
         }[id];
         setStateAction && setStateAction(value);
+        console.log(title)
     };
-    const addCategory = async () => {
-        let response = await fetch('http://localhost:8800/api/categories', {
-            method: 'POST',
-            //
-            body: JSON.stringify({
-                title: title,
-                slug: slug
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=utf-8'
-            }
-        })
 
-        // response = await response.json()
-
-        alert(JSON.stringify(response))
+    const onSave = () => {
+        console.log(oldSlug)
+        setChangedStateId(null)
     }
-
-// console.log(menu)
     return (
 
         <div className={styles.container}>
             <h2>Сырье</h2>
             <div className={styles.itemList}>
-                {categories.map(e => <div key={e.slug} className={styles.item}>{e.title}</div>)}
+                {categories.map(e => changedStateId !== e.title ? <div key={e.slug} onDoubleClick={() => {
+                        console.log(e)
+                        setChangedStateId(e.title)
+                        setOldSlug(e.slug)
+                        setTitle(e.title)
+                        setSlug(e.slug)
+                        console.log(changedStateId)
+                    }}  className={styles.item}>{e.title}</div> : <div key={e.slug}>
+                        <input id="title" onChange={onChange} type="text" name="title" value={title}/>
+                        <input id="slug" onChange={onChange} type="text" name="slug" value={slug}/>
+                        <button onClick={onSave}>SAVE</button>
+                    </div>
+                )}
             </div>
             <div className={styles.addItemList}>
                 {/*<MenuItemAdd/>*/}
-                <form onSubmit={(event) => {
-                    event.preventDefault()
-
-                    console.log(slug)
-                    console.log(title)
-                    addCategory(slug, title)
-                }
-                }>
-                    <div>
-                        <input id="slug" onChange={onChange} type="text" name="slug" ref={inputSlugRef} defaultValue=""/>
-                        <input id="title" onChange={onChange} type="text" name="title" ref={inputTitleRef} defaultValue=""/>
-                    </div>
-                    <div>
-                        <button type="submit">Отправить</button>
-                    </div>
-                </form>
+                <AddMaterials/>
             </div>
         </div>
 

@@ -5,8 +5,8 @@ import {useEffect, useState} from "react";
 import Materials from "@/app/admin/components/modules/Materials/Materials";
 
 export default function Page() {
-    const [menu, setMenu] = useState()
-    const [categories, setCategories] = useState()
+    const [menu, setMenu] = useState([])
+    const [categories, setCategories] = useState([])
     const [pending, setPending] = useState(true)
 
     async function GetUsers() {
@@ -37,6 +37,7 @@ export default function Page() {
             return res
         }
     }
+
     useEffect(() => {
         GetCategories().then((categories)=>{
             setCategories(categories)
@@ -47,6 +48,9 @@ export default function Page() {
             setMenu(menu)
         })
     }, []);
+    useEffect(() => {
+        if (categories.length === 0 && !menu) {setPending(true)} else {setPending(false)}
+    }, [menu, categories]);
     if (pending === false) {
         return (
             <main className={styles.main}>
