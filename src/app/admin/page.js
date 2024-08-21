@@ -3,6 +3,7 @@ import styles from "./admin.module.css";
 import Header from "@/app/admin/components/modules/Header/Header";
 import {useEffect, useState} from "react";
 import Materials from "@/app/admin/components/modules/Materials/Materials";
+import {GetCategories} from "@/app/api/fetchCategories";
 
 export default function Page() {
     const [menu, setMenu] = useState([])
@@ -23,20 +24,20 @@ export default function Page() {
             return menuList
         }
     }
-    async function GetCategories() {
-        const response = await fetch("https://ratapi.vercel.app/api/categories", {
-            method: "GET",
-            headers: { "Accept": "application/json" }
-        });
-        // если запрос прошел нормально
-        if (response.ok === true) {
-            // получаем данные
-            let res = await response.json();
-            console.log(res)
-            // setPending(false)
-            return res
-        }
-    }
+    // async function GetCategories() {
+    //     const response = await fetch("https://ratapi.vercel.app/api/categories", {
+    //         method: "GET",
+    //         headers: { "Accept": "application/json" }
+    //     });
+    //     // если запрос прошел нормально
+    //     if (response.ok === true) {
+    //         // получаем данные
+    //         let res = await response.json();
+    //         console.log(res)
+    //         // setPending(false)
+    //         return res
+    //     }
+    // }
 
     useEffect(() => {
         GetCategories().then((categories)=>{
