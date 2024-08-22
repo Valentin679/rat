@@ -31,7 +31,31 @@
     color: #3770b1;
 }
 
-
+.itemEditDel {
+    display: flex;
+    /*border-radius: 50%;*/
+    padding: 5px 8px;
+    /*color: white;*/
+}
+.itemEdit {
+    border-radius: 50%;
+    padding: 5px 8px;
+    color: white;
+}
+.itemEdit:hover {
+    background-color: #e4e5e9;
+    cursor: pointer;
+}
+.itemEdit:active {
+    background-color: #dadce2;
+    cursor: pointer;
+}
+.itemEdit svg{
+    color: #447bbb;
+    position: relative;
+    top: 1px;
+    left: 1px;
+}
 
 .itemDelete {
     border-radius: 50%;
@@ -56,34 +80,6 @@
     gap: 20px;
     flex-direction: column;
     width: max-content;
-}
-.addItemList input{
-    padding: 7px 12px ;
-    border-radius: 8px;
-    border: 1px solid #d9dadc;
-    font-size: 13px;
-    background-color: #f7f8fa;
-}
-.addItemList input:hover {
-    border-color: #5d768c;
-}
-.addItemList input:focus-visible {
-    border: 1px solid #5d768c !important;
-}
-.addItemList button{
-    border: none;
-    border-radius: 8px;
-    color: white;
-    width: 100%;
-    background-color: #447bba;
-    padding: 8px 0;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-.addItemList button:hover{
-    background-color: #4177b5;
-    cursor: pointer;
 }
 .addInputBox {
     display: flex;
