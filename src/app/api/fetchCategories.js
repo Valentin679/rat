@@ -44,3 +44,12 @@ export const putCategory = async (slug, oldSlug, title) => {
         }
     })
 }
+
+export const deleteCategory = async (slug) => {
+    await fetch('http://localhost:8800/api/categories/' + slug, {
+        method: 'DELETE',
+        headers: {
+            'Content-type': 'application/json; charset=utf-8'
+        }
+    })
+}

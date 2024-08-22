@@ -1,10 +1,16 @@
 .container {
     display: flex;
     flex-direction: column;
-    /*width: 100%;*/
+    width: fit-content;
     padding: 10px;
-    border: 1px solid #000;
     gap: 20px;
+}
+
+.addItemContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
 }
 
 .itemList {
@@ -14,11 +20,72 @@
 }
 
 .item {
-    padding: 5px 10px;
-    border-radius: 5px;
-    background-color: azure;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 10px 2px 20px;
+    border-radius: 8px;
+    background-color: #ebf2fa;
+    font-size: 13px;
+    font-weight: bold;
+    color: #3770b1;
 }
 
+
+
+.itemDelete {
+    border-radius: 50%;
+    padding: 5px 8px;
+    color: white;
+}
+.itemDelete:hover {
+    background-color: #e4e5e9;
+    cursor: pointer;
+}
+.itemDelete:active {
+    background-color: #dadce2;
+    cursor: pointer;
+}
+.itemDelete svg{
+    color: #e8483f;
+    position: relative;
+    top: 1px;
+}
 .addItemList {
     display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: max-content;
+}
+.addItemList input{
+    padding: 7px 12px ;
+    border-radius: 8px;
+    border: 1px solid #d9dadc;
+    font-size: 13px;
+    background-color: #f7f8fa;
+}
+.addItemList input:hover {
+    border-color: #5d768c;
+}
+.addItemList input:focus-visible {
+    border: 1px solid #5d768c !important;
+}
+.addItemList button{
+    border: none;
+    border-radius: 8px;
+    color: white;
+    width: 100%;
+    background-color: #447bba;
+    padding: 8px 0;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.addItemList button:hover{
+    background-color: #4177b5;
+    cursor: pointer;
+}
+.addInputBox {
+    display: flex;
+    gap: 20px;
 }

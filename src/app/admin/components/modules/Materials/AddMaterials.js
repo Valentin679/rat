@@ -19,8 +19,9 @@ export default function AddMaterials({setCatList}) {
     };
 
     return (
-        <div className={styles.addItemList}>
-            <form onSubmit={(event) => {
+        <div className={styles.addItemContainer}>
+            <h4>Добавить новую категорию сырья</h4>
+            <form className={styles.addItemList} onSubmit={(event) => {
                 event.preventDefault()
                 addCategory(slug, title).then(r => {
                     GetCategories().then((res) => {
@@ -33,15 +34,15 @@ export default function AddMaterials({setCatList}) {
 
             }
             }>
-                <div>
-                    <input id="slug" onChange={onChange} type="text" name="slug" ref={inputSlugRef} defaultValue=""/>
-                    <input id="title" onChange={onChange} type="text" name="title" ref={inputTitleRef} defaultValue=""/>
+                <div className={styles.addInputBox}>
+                    <input id="slug" onChange={onChange} type="text" name="slug" ref={inputSlugRef}
+                           defaultValue=""/>
+                    <input id="title" onChange={onChange} type="text" name="title" ref={inputTitleRef}
+                           defaultValue=""/>
                 </div>
-                <div>
-                    <button type="submit">Отправить</button>
-                </div>
+
+                <button type="submit">Добавить</button>
             </form>
         </div>
-
     )
 }
