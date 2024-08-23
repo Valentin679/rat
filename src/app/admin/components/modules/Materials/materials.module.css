@@ -31,6 +31,11 @@
     color: #3770b1;
 }
 
+.item span {
+    font-size: 11px;
+    color: #8f8f8f;
+}
+
 .itemEditDel {
     display: flex;
     /*border-radius: 50%;*/
@@ -82,6 +87,7 @@
     width: max-content;
 }
 .addInputBox {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
 }

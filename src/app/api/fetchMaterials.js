@@ -1,5 +1,5 @@
 export async function GetMaterials() {
-    const response = await fetch("https://ratapi.vercel.app/api/categories", {
+    const response = await fetch("https://ratapi.vercel.app/api/materials", {
         method: "GET",
         headers: { "Accept": "application/json" }
     });
@@ -14,7 +14,7 @@ export async function GetMaterials() {
 }
 
 export const addCategory = async (slug, title) => {
-    await fetch('http://localhost:8800/api/categories', {
+    await fetch('https://ratapi.vercel.app/api/materials', {
         method: 'POST',
         //
         body: JSON.stringify({

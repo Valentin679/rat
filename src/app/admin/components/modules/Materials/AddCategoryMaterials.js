@@ -38,9 +38,9 @@ export default function AddCategoryMaterials({setCatList}) {
             }
             }>
                 <div className={styles.addInputBox}>
-                    <input id="slug" onChange={onChange} type="text" name="slug" ref={inputSlugRef}
+                    <input id="title" placeholder='Название' onChange={onChange} type="text" name="title" ref={inputTitleRef}
                            defaultValue=""/>
-                    <input id="title" onChange={onChange} type="text" name="title" ref={inputTitleRef}
+                    <input id="slug" placeholder='Артикул' onChange={onChange} type="text" name="slug" ref={inputSlugRef}
                            defaultValue=""/>
                 </div>
 

@@ -6,7 +6,7 @@ import {FaEdit} from "react-icons/fa";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import {RiDeleteBin2Line} from "react-icons/ri";
 
-export default function Materials({categories}) {
+export default function Materials({materials}) {
     const [materialsList, setMaterialsList] = useState([])
     const [oldSlug, setOldSlug] = useState()
     const [slug, setSlug] = useState()
@@ -44,8 +44,8 @@ export default function Materials({categories}) {
     }
 
     useEffect(() => {
-        setMaterialsList(categories)
-    }, [categories]);
+        setMaterialsList(materials)
+    }, [materials]);
     return (
 
         <div className={styles.container}>
@@ -53,7 +53,7 @@ export default function Materials({categories}) {
             <div className={styles.itemList}>
                 {materialsList.map(e => changedMaterialsId !== e.title ?
                     <div key={e.slug} className={styles.item}>
-                        <div >{e.title}
+                        <div >{e.title} / <span>{e.categoryTitle}</span>
                         </div>
                         <div className={styles.itemEditDel}>
                             <div className={styles.itemEdit}>
@@ -78,8 +78,11 @@ export default function Materials({categories}) {
                     :
                     <>
                     <div key={e.slug} className={styles.addInputBox}>
-                        <input id="title" onChange={onChange} type="text" name="title" value={title}/>
-                        <input id="slug" onChange={onChange} type="text" name="slug" value={slug}/>
+                        <input id="title" placeholder="Название" onChange={onChange} type="text" name="title" value={title}/>
+                        <input id="slug" placeholder="Артикул" onChange={onChange} type="text" name="slug" value={slug}/>
+                        <input id="slug" placeholder="Цена за грамм" onChange={onChange} type="number" name="price" value={slug}/>
+                        <input id="slug" placeholder="Категория" onChange={onChange} type="text" name="category" value={slug}/>
+                        <input id="slug" placeholder="Минимум наличия" onChange={onChange} type="text" name="min" value={slug}/>
                     </div>
                         <button onClick={onSave}>Обновить</button>
                     </>

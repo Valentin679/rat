@@ -9,7 +9,7 @@ import {FaEdit} from "react-icons/fa";
 import {RiDeleteBin2Line} from "react-icons/ri";
 import AddCategoryMaterials from "@/app/admin/components/modules/Materials/AddCategoryMaterials";
 
-export default function CategoryMaterials({categories}) {
+export default function CategoryMaterials({materialsCategories}) {
     const [catList, setCatList] = useState([])
     const [oldSlug, setOldSlug] = useState()
     const [slug, setSlug] = useState()
@@ -47,8 +47,8 @@ export default function CategoryMaterials({categories}) {
     }
 
     useEffect(() => {
-        setCatList(categories)
-    }, [categories]);
+        setCatList(materialsCategories)
+    }, [materialsCategories]);
     return (
 
         <div className={styles.container}>
