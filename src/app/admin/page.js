@@ -3,7 +3,8 @@ import styles from "./admin.module.css";
 import Header from "@/app/admin/components/modules/Header/Header";
 import {useEffect, useState} from "react";
 import Materials from "@/app/admin/components/modules/Materials/Materials";
-import {GetCategories} from "@/app/api/fetchCategories";
+import {GetMaterials} from "@/app/api/fetchMaterials";
+import CategoryMaterials from "@/app/admin/components/modules/Materials/CategoryMaterials";
 
 export default function Page() {
     const [menu, setMenu] = useState([])
@@ -13,7 +14,7 @@ export default function Page() {
     async function GetUsers() {
         const response = await fetch("https://ratapi.vercel.app/api/users", {
             method: "GET",
-            headers: { "Accept": "application/json" }
+            headers: {"Accept": "application/json"}
         });
         // если запрос прошел нормально
         if (response.ok === true) {
@@ -24,6 +25,7 @@ export default function Page() {
             return menuList
         }
     }
+
     // async function GetCategories() {
     //     const response = await fetch("https://ratapi.vercel.app/api/categories", {
     //         method: "GET",
@@ -40,25 +42,35 @@ export default function Page() {
     // }
 
     useEffect(() => {
-        GetCategories().then((categories)=>{
+        GetMaterials().then((categories) => {
             setCategories(categories)
         })
     }, []);
     useEffect(() => {
-        GetUsers().then((menu)=>{
+        GetUsers().then((menu) => {
             setMenu(menu)
         })
     }, []);
     useEffect(() => {
-        if (categories.length === 0 && !menu) {setPending(true)} else {setPending(false)}
+        if (categories.length === 0 && !menu) {
+            setPending(true)
+        } else {
+            setPending(false)
+        }
     }, [menu, categories]);
     if (pending === false) {
         return (
-            <main className={styles.main}>
+            <div className={styles.main}>
                 <h2>Админка</h2>
                 <Header menu={menu}/>
-                <Materials categories={categories}/>
-            </main>
+                <div className={styles.materials}>
+                    <h2>Работа с сырьем</h2>
+                    <div className={styles.materialsContainer}>
+                        <Materials categories={categories}/>
+                        <CategoryMaterials categories={categories}/>
+                    </div>
+                </div>
+            </div>
         )
     } else {
         <p>f</p>

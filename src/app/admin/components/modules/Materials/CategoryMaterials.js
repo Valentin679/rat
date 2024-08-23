@@ -1,17 +1,20 @@
 import styles from "@/app/admin/components/modules/Materials/materials.module.css";
 import React, {useEffect, useRef, useState} from "react";
-import AddMaterials from "@/app/admin/components/modules/Materials/AddMaterials";
-import {deleteCategory, GetMaterials, putCategory} from "@/app/api/fetchMaterials";
+import {
+    deleteMaterialsCategory,
+    GetMaterialsCategories,
+    putMaterialsCategory
+} from "@/app/api/fetchMaterialsCategories";
 import {FaEdit} from "react-icons/fa";
-import {RiDeleteBin6Line} from "react-icons/ri";
 import {RiDeleteBin2Line} from "react-icons/ri";
+import AddCategoryMaterials from "@/app/admin/components/modules/Materials/AddCategoryMaterials";
 
-export default function Materials({categories}) {
-    const [materialsList, setMaterialsList] = useState([])
+export default function CategoryMaterials({categories}) {
+    const [catList, setCatList] = useState([])
     const [oldSlug, setOldSlug] = useState()
     const [slug, setSlug] = useState()
     const [title, setTitle] = useState()
-    const [changedMaterialsId, setChangedMaterialsId] = useState(null)
+    const [changedStateId, setChangedStateId] = useState(null)
 
     const onChange = (e) => {
         const {id, value} = e.currentTarget;
@@ -25,40 +28,40 @@ export default function Materials({categories}) {
 
     const onSave = () => {
         // console.log(oldSlug)
-        setChangedMaterialsId(null)
-        putCategory(slug, oldSlug, title).then(r => {
-            GetMaterials().then((res) => {
-                setMaterialsList(res)
+        setChangedStateId(null)
+        putMaterialsCategory(slug, oldSlug, title).then(r => {
+            GetMaterialsCategories().then((res) => {
+                setCatList(res)
                 // console.log('новые категории' + JSON.stringify(catList))
             })
         })
     }
 
     const onDelete = (slug) => {
-        deleteCategory(slug).then(r => {
-            GetMaterials().then((res) => {
-                setMaterialsList(res)
+        deleteMaterialsCategory(slug).then(r => {
+            GetMaterialsCategories().then((res) => {
+                setCatList(res)
                 // console.log('новые категории' + JSON.stringify(catList))
             })
         })
     }
 
     useEffect(() => {
-        setMaterialsList(categories)
+        setCatList(categories)
     }, [categories]);
     return (
 
         <div className={styles.container}>
-            <h3>Сырье</h3>
+            <h3>Категории сырья</h3>
             <div className={styles.itemList}>
-                {materialsList.map(e => changedMaterialsId !== e.title ?
+                {catList.map(e => changedStateId !== e.title ?
                     <div key={e.slug} className={styles.item}>
                         <div >{e.title}
                         </div>
                         <div className={styles.itemEditDel}>
                             <div className={styles.itemEdit}>
                                 <FaEdit onClick={() => {
-                                    setChangedMaterialsId(e.title)
+                                    setChangedStateId(e.title)
                                     setOldSlug(e.slug)
                                     setTitle(e.title)
                                     setSlug(e.slug)
@@ -86,7 +89,7 @@ export default function Materials({categories}) {
                 )}
             </div>
             <div className={styles.addItemList}>
-                <AddMaterials materialsList={materialsList}/>
+                <AddCategoryMaterials setCatList={setCatList}/>
             </div>
         </div>
 

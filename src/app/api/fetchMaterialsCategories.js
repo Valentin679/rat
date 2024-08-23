@@ -1,4 +1,4 @@
-export async function GetCategories() {
+export async function GetMaterialsCategories() {
     const response = await fetch("https://ratapi.vercel.app/api/categories", {
         method: "GET",
         headers: { "Accept": "application/json" }
@@ -13,7 +13,7 @@ export async function GetCategories() {
     }
 }
 
-export const addCategory = async (slug, title) => {
+export const addMaterialsCategory = async (slug, title) => {
     await fetch('http://localhost:8800/api/categories', {
         method: 'POST',
         //
@@ -29,7 +29,7 @@ export const addCategory = async (slug, title) => {
 }
 
 
-export const putCategory = async (slug, oldSlug, title) => {
+export const putMaterialsCategory = async (slug, oldSlug, title) => {
     await fetch('http://localhost:8800/api/categories', {
         method: 'PUT',
         //
@@ -45,7 +45,7 @@ export const putCategory = async (slug, oldSlug, title) => {
     })
 }
 
-export const deleteCategory = async (slug) => {
+export const deleteMaterialsCategory = async (slug) => {
     await fetch('http://localhost:8800/api/categories/' + slug, {
         method: 'DELETE',
         headers: {

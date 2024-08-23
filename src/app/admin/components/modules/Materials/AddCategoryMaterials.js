@@ -1,8 +1,11 @@
 import styles from "@/app/admin/components/modules/Materials/materials.module.css";
 import {useRef, useState} from "react";
-import {addCategory, GetCategories} from "@/app/api/fetchMaterials";
+import {
+    addMaterialsCategory,
+    GetMaterialsCategories
+} from "@/app/api/fetchMaterialsCategories";
 
-export default function AddMaterials({materialsList}) {
+export default function AddCategoryMaterials({setCatList}) {
     const inputSlugRef = useRef(null)
     const inputTitleRef = useRef(null)
     const [slug, setSlug] = useState()
@@ -20,12 +23,12 @@ export default function AddMaterials({materialsList}) {
 
     return (
         <div className={styles.addItemContainer}>
-            <h4>Добавить новое сырье</h4>
+            <h4>Добавить новую категорию сырья</h4>
             <form className={styles.addItemList} onSubmit={(event) => {
                 event.preventDefault()
-                addCategory(slug, title).then(r => {
-                    GetCategories().then((res) => {
-                        materialsList(res)
+                addMaterialsCategory(slug, title).then(r => {
+                    GetMaterialsCategories().then((res) => {
+                        setCatList(res)
                         inputSlugRef.current.value = ''
                         inputTitleRef.current.value = ''
                         console.log(slug + " = " + title)

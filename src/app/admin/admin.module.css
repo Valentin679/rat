@@ -30,6 +30,21 @@
   width: 100%;
 }
 
+.materials {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.materialsContainer {
+  display: flex;
+}
+.materialsContainer h3{
+  text-align: center;
+}
+.materialsBlock{
+
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
