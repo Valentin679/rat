@@ -1,22 +1,21 @@
 import styles from "@/app/admin/components/modules/Materials/materials.module.css";
 import React, {useEffect, useRef, useState} from "react";
 import AddMaterials from "@/app/admin/components/modules/Materials/AddMaterials";
-import {deleteCategory, GetMaterials, putCategory} from "@/app/api/fetchMaterials";
+import {deleteMaterials, GetMaterials, putMaterials} from "@/app/api/fetchMaterials";
 import {FaEdit} from "react-icons/fa";
-import {RiDeleteBin6Line} from "react-icons/ri";
 import {RiDeleteBin2Line} from "react-icons/ri";
+import {MdCancelPresentation} from "react-icons/md";
 
 export default function Materials({materials}) {
     const [materialsList, setMaterialsList] = useState([])
-    const [oldSlug, setOldSlug] = useState()
-    const [slug, setSlug] = useState()
+    const [id, setId] = useState()
     const [title, setTitle] = useState()
     const [changedMaterialsId, setChangedMaterialsId] = useState(null)
 
     const onChange = (e) => {
         const {id, value} = e.currentTarget;
         const setStateAction = {
-            slug: setSlug,
+            id: setId,
             title: setTitle
         }[id];
         setStateAction && setStateAction(value);
@@ -26,7 +25,7 @@ export default function Materials({materials}) {
     const onSave = () => {
         // console.log(oldSlug)
         setChangedMaterialsId(null)
-        putCategory(slug, oldSlug, title).then(r => {
+        putMaterials(id, title).then(r => {
             GetMaterials().then((res) => {
                 setMaterialsList(res)
                 // console.log('новые категории' + JSON.stringify(catList))
@@ -34,8 +33,8 @@ export default function Materials({materials}) {
         })
     }
 
-    const onDelete = (slug) => {
-        deleteCategory(slug).then(r => {
+    const onDelete = (id) => {
+        deleteMaterials(id).then(r => {
             GetMaterials().then((res) => {
                 setMaterialsList(res)
                 // console.log('новые категории' + JSON.stringify(catList))
@@ -52,23 +51,22 @@ export default function Materials({materials}) {
             <h3>Сырье</h3>
             <div className={styles.itemList}>
                 {materialsList.map(e => changedMaterialsId !== e.title ?
-                    <div key={e.slug} className={styles.item}>
-                        <div >{e.title} / <span>{e.categoryTitle}</span>
+                    <div key={e._id} id={e._id} className={styles.item}>
+                        <div>{e.title} / <span>{e.categoryTitle}</span>
                         </div>
                         <div className={styles.itemEditDel}>
                             <div className={styles.itemEdit}>
                                 <FaEdit onClick={() => {
                                     setChangedMaterialsId(e.title)
-                                    setOldSlug(e.slug)
                                     setTitle(e.title)
-                                    setSlug(e.slug)
+                                    setId(e._id)
                                 }}
-                                    size={23}
+                                        size={23}
                                 />
                             </div>
                             <div className={styles.itemDelete}>
                                 <RiDeleteBin2Line onClick={() => {
-                                    onDelete(e.slug)
+                                    onDelete(e._id)
                                 }}
                                                   size={23}
                                 />
@@ -76,16 +74,28 @@ export default function Materials({materials}) {
                         </div>
                     </div>
                     :
-                    <>
-                    <div key={e.slug} className={styles.addInputBox}>
-                        <input id="title" placeholder="Название" onChange={onChange} type="text" name="title" value={title}/>
-                        <input id="slug" placeholder="Артикул" onChange={onChange} type="text" name="slug" value={slug}/>
-                        <input id="slug" placeholder="Цена за грамм" onChange={onChange} type="number" name="price" value={slug}/>
-                        <input id="slug" placeholder="Категория" onChange={onChange} type="text" name="category" value={slug}/>
-                        <input id="slug" placeholder="Минимум наличия" onChange={onChange} type="text" name="min" value={slug}/>
+                    <div key={e._id} className={styles.editInputBox}>
+                        <div className={styles.addInputBox}>
+                            <input id="title" placeholder="Название" onChange={onChange} type="text" name="title"
+                                   value={title}/>
+                            {/*<input id="slug" placeholder="Артикул" onChange={onChange} type="text" name="slug" />*/}
+                            <input id="slug" placeholder="Цена за грамм" onChange={onChange} type="number"
+                                   name="price"/>
+                            <input id="slug" placeholder="Категория" onChange={onChange} type="text" name="category"/>
+                            <input id="slug" placeholder="Минимум наличия" onChange={onChange} type="text" name="min"/>
+                        </div>
+                        <div className={styles.editInputBoxButtons}>
+                            <button onClick={onSave}>Обновить</button>
+                            <button className={styles.cancelButton} onClick={() => {
+                                setChangedMaterialsId(null)
+                            }}>
+                                <MdCancelPresentation
+
+
+                                    size={23}/>
+                            </button>
+                        </div>
                     </div>
-                        <button onClick={onSave}>Обновить</button>
-                    </>
                 )}
             </div>
             <div className={styles.addItemList}>

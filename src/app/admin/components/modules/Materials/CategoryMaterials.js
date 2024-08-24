@@ -8,6 +8,7 @@ import {
 import {FaEdit} from "react-icons/fa";
 import {RiDeleteBin2Line} from "react-icons/ri";
 import AddCategoryMaterials from "@/app/admin/components/modules/Materials/AddCategoryMaterials";
+import {MdCancelPresentation} from "react-icons/md";
 
 export default function CategoryMaterials({materialsCategories}) {
     const [catList, setCatList] = useState([])
@@ -84,7 +85,17 @@ export default function CategoryMaterials({materialsCategories}) {
                         <input id="title" onChange={onChange} type="text" name="title" value={title}/>
                         <input id="slug" onChange={onChange} type="text" name="slug" value={slug}/>
                     </div>
-                        <button onClick={onSave}>Обновить</button>
+                        <div className={styles.editInputBoxButtons}>
+                            <button onClick={onSave}>Обновить</button>
+                            <button className={styles.cancelButton} onClick={() => {
+                                setChangedStateId(null)
+                            }}>
+                                <MdCancelPresentation
+
+
+                                    size={23}/>
+                            </button>
+                        </div>
                     </>
                 )}
             </div>

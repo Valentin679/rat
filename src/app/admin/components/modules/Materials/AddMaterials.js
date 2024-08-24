@@ -1,6 +1,6 @@
 import styles from "@/app/admin/components/modules/Materials/materials.module.css";
 import {useRef, useState} from "react";
-import {addCategory, GetMaterials} from "@/app/api/fetchMaterials";
+import {addCategory, addMaterials, GetMaterials} from "@/app/api/fetchMaterials";
 
 export default function AddMaterials({materialsList}) {
     const inputSlugRef = useRef(null)
@@ -26,7 +26,7 @@ export default function AddMaterials({materialsList}) {
             <h4>Добавить новое сырье</h4>
             <form className={styles.addItemList} onSubmit={(event) => {
                 event.preventDefault()
-                addCategory(slug, title).then(r => {
+                addMaterials(slug, title).then(r => {
                     GetMaterials().then((res) => {
                         materialsList(res)
                         inputSlugRef.current.value = ''
@@ -44,8 +44,8 @@ export default function AddMaterials({materialsList}) {
                     <input id="title" onChange={onChange} placeholder="Название" type="text" name="title"
                            ref={inputTitleRef}
                            defaultValue=""/>
-                    <input id="slug" onChange={onChange} placeholder="Артикул" type="text" name="slug" ref={inputSlugRef}
-                           defaultValue=""/>
+                    {/*<input id="slug" onChange={onChange} placeholder="Артикул" type="text" name="slug" ref={inputSlugRef}*/}
+                    {/*       defaultValue=""/>*/}
                     <input id="price" placeholder="Цена за грамм" onChange={onChange} type="number" name="price" ref={inputPriceRef}
                            defaultValue=""/>
                     <input id="category" placeholder="Категория" onChange={onChange} type="text" name="category" ref={inputCategoryRef}

@@ -61,6 +61,18 @@
     top: 1px;
     left: 1px;
 }
+.cancelButton {
+    width: max-content;
+    background-color: #e8483f;
+    padding: 5px 8px;
+}
+.cancelButton:hover {
+    background-color: #dd4446;
+}
+.cancelButton svg {
+    position: relative;
+    top: 1px;
+}
 
 .itemDelete {
     border-radius: 50%;
@@ -90,4 +102,14 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+}
+
+.editInputBox {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.editInputBoxButtons {
+    display: flex;
+    gap: 5px;
 }
