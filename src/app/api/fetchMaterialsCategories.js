@@ -1,5 +1,5 @@
 export async function GetMaterialsCategories() {
-    const response = await fetch("https://ratapi.vercel.app/api/categories", {
+    const response = await fetch("https://ratapi.vercel.app/api/materials-categories", {
         method: "GET",
         headers: { "Accept": "application/json" }
     });
@@ -14,7 +14,7 @@ export async function GetMaterialsCategories() {
 }
 
 export const addMaterialsCategory = async (slug, title) => {
-    await fetch('http://localhost:8800/api/categories', {
+    await fetch('https://ratapi.vercel.app/api/materials-categories', {
         method: 'POST',
         //
         body: JSON.stringify({
@@ -30,7 +30,7 @@ export const addMaterialsCategory = async (slug, title) => {
 
 
 export const putMaterialsCategory = async (slug, oldSlug, title) => {
-    await fetch('http://localhost:8800/api/categories', {
+    await fetch('https://ratapi.vercel.app/api/materials-categories', {
         method: 'PUT',
         //
         body: JSON.stringify({
@@ -46,7 +46,7 @@ export const putMaterialsCategory = async (slug, oldSlug, title) => {
 }
 
 export const deleteMaterialsCategory = async (slug) => {
-    await fetch('http://localhost:8800/api/categories/' + slug, {
+    await fetch('https://ratapi.vercel.app/api/materials-categories' + slug, {
         method: 'DELETE',
         headers: {
             'Content-type': 'application/json; charset=utf-8'
