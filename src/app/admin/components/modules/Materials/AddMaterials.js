@@ -2,23 +2,30 @@ import styles from "@/app/admin/components/modules/Materials/materials.module.cs
 import {useRef, useState} from "react";
 import {addCategory, addMaterials, GetMaterials} from "@/app/api/fetchMaterials";
 
-export default function AddMaterials({materialsList}) {
+export default function AddMaterials({setMaterialsList}) {
     const inputSlugRef = useRef(null)
     const inputTitleRef = useRef(null)
     const inputPriceRef = useRef(null)
     const inputCategoryRef = useRef(null)
     const inputMinRef = useRef(null)
-    const [slug, setSlug] = useState()
+    const [id, setId] = useState()
     const [title, setTitle] = useState()
+    const [minimal_availability, setMinimal_availability] = useState()
+    const [category_id, setCategory_id] = useState()
+    const [category_title, setCategory_title] = useState()
+    const [price, setPrice] = useState()
 
     const onChange = (e) => {
         const {id, value} = e.currentTarget;
         const setStateAction = {
-            slug: setSlug,
-            title: setTitle
+            id: setId,
+            title: setTitle,
+            price: setPrice,
+            minimal_availability: setMinimal_availability
+
         }[id];
         setStateAction && setStateAction(value);
-        console.log(slug + " ------------ " + title)
+        console.log(id + " ------------ " + title)
     };
 
     return (
@@ -26,15 +33,15 @@ export default function AddMaterials({materialsList}) {
             <h4>Добавить новое сырье</h4>
             <form className={styles.addItemList} onSubmit={(event) => {
                 event.preventDefault()
-                addMaterials(slug, title).then(r => {
+                addMaterials(id, title, price, minimal_availability,category_id,category_title).then(r => {
                     GetMaterials().then((res) => {
-                        materialsList(res)
+                        setMaterialsList(res)
                         inputSlugRef.current.value = ''
                         inputTitleRef.current.value = ''
                         inputPriceRef.current.value = ''
                         inputCategoryRef.current.value = ''
                         inputMinRef.current.value = ''
-                        console.log(slug + " = " + title)
+                        console.log(id + " = " + title)
                     })
                 })
 
@@ -50,7 +57,7 @@ export default function AddMaterials({materialsList}) {
                            defaultValue=""/>
                     <input id="category" placeholder="Категория" onChange={onChange} type="text" name="category" ref={inputCategoryRef}
                            defaultValue=""/>
-                    <input id="min" placeholder="Минимум наличия" onChange={onChange} type="number" name="min" ref={inputMinRef}
+                    <input id="minimal_availability" placeholder="Минимум наличия" onChange={onChange} type="number" name="minimal_availability" ref={inputMinRef}
                            defaultValue=""/>
                 </div>
 

@@ -99,7 +99,7 @@ export default function Materials({materials}) {
                 )}
             </div>
             <div className={styles.addItemList}>
-                <AddMaterials materialsList={materialsList}/>
+                <AddMaterials setMaterialsList={setMaterialsList}/>
             </div>
         </div>
 

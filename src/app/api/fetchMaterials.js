@@ -13,14 +13,18 @@ export async function GetMaterials() {
     }
 }
 
-export const addMaterials = async (slug, title) => {
+export const addMaterials = async (id, title, minimal_availability,category_id,category_title) => {
     await fetch('https://ratapi.vercel.app/api/materials', {
         method: 'POST',
         //
         body: JSON.stringify({
-            _id: slug,
-            title: title,
-            slug: slug
+            _id: id,
+            title,
+            minimal_availability,
+            category_id,
+            category_title
+
+
         }),
         headers: {
             'Content-type': 'application/json; charset=utf-8'
@@ -30,7 +34,7 @@ export const addMaterials = async (slug, title) => {
 
 
 export const putMaterials = async (slug, oldSlug, title) => {
-    await fetch('http://localhost:8800/api/categories', {
+    await fetch('https://ratapi.vercel.app/api/materials', {
         method: 'PUT',
         //
         body: JSON.stringify({
@@ -46,7 +50,7 @@ export const putMaterials = async (slug, oldSlug, title) => {
 }
 
 export const deleteMaterials = async (slug) => {
-    await fetch('http://localhost:8800/api/categories/' + slug, {
+    await fetch('https://ratapi.vercel.app/api/materials' + slug, {
         method: 'DELETE',
         headers: {
             'Content-type': 'application/json; charset=utf-8'
