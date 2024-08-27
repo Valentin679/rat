@@ -5,28 +5,33 @@ import {deleteMaterials, GetMaterials, putMaterials} from "@/app/api/fetchMateri
 import {FaEdit} from "react-icons/fa";
 import {RiDeleteBin2Line} from "react-icons/ri";
 import {MdCancelPresentation} from "react-icons/md";
+import SelectCategories from "@/app/admin/components/SelectCategories";
 
-export default function Materials({materials}) {
+export default function Materials({materials, materialsCategories}) {
     const [materialsList, setMaterialsList] = useState([])
-    const [id, setId] = useState()
-    const [title, setTitle] = useState()
+    const [id, setId] = useState(null)
+    const [title, setTitle] = useState(null)
+    const [category, setCategory] = useState(null)
+    const [price, setPrice] = useState(null)
     const [changedMaterialsId, setChangedMaterialsId] = useState(null)
 
     const onChange = (e) => {
         const {id, value} = e.currentTarget;
         const setStateAction = {
             id: setId,
-            title: setTitle
+            title: setTitle,
+            price: setPrice
         }[id];
         setStateAction && setStateAction(value);
         console.log(title)
     };
 
     const onSave = () => {
-        // console.log(oldSlug)
-        setChangedMaterialsId(null)
-        putMaterials(id, title).then(r => {
+        console.log(changedMaterialsId, title, category, price)
+
+        putMaterials(changedMaterialsId, title, category, price).then(r => {
             GetMaterials().then((res) => {
+                setChangedMaterialsId(null)
                 setMaterialsList(res)
                 // console.log('новые категории' + JSON.stringify(catList))
             })
@@ -45,6 +50,7 @@ export default function Materials({materials}) {
     useEffect(() => {
         setMaterialsList(materials)
     }, [materials]);
+
     return (
 
         <div className={styles.container}>
@@ -52,14 +58,19 @@ export default function Materials({materials}) {
             <div className={styles.itemList}>
                 {materialsList.map(e => changedMaterialsId !== e.title ?
                     <div key={e._id} id={e._id} className={styles.item}>
-                        <div>{e.title} / <span>{e.categoryTitle}</span>
+                        <div className={styles.itemInfo}><div className={styles.itemTitle}>{e.title} / <span>{e.categoryTitle}</span></div>
+                            <div>{!e.price ? '0': e.price} руб/кг</div>
                         </div>
                         <div className={styles.itemEditDel}>
+
                             <div className={styles.itemEdit}>
                                 <FaEdit onClick={() => {
                                     setChangedMaterialsId(e.title)
                                     setTitle(e.title)
+                                    setPrice(e.price)
                                     setId(e._id)
+                                    setCategory({value: e.category, label: e.categoryTitle})
+console.log(changedMaterialsId)
                                 }}
                                         size={23}
                                 />
@@ -79,9 +90,10 @@ export default function Materials({materials}) {
                             <input id="title" placeholder="Название" onChange={onChange} type="text" name="title"
                                    value={title}/>
                             {/*<input id="slug" placeholder="Артикул" onChange={onChange} type="text" name="slug" />*/}
-                            <input id="slug" placeholder="Цена за грамм" onChange={onChange} type="number"
-                                   name="price"/>
-                            <input id="slug" placeholder="Категория" onChange={onChange} type="text" name="category"/>
+                            <input id="price" placeholder="Цена за грамм" onChange={onChange} type="number"
+                                   name="price" value={price}/>
+                            <SelectCategories setCategory={setCategory} initialCategory={{value: e.category, label: e.categoryTitle}} categories={materialsCategories}/>
+                            {/*<input id="slug" placeholder="Категория" onChange={onChange} type="text" name="category"/>*/}
                             <input id="slug" placeholder="Минимум наличия" onChange={onChange} type="text" name="min"/>
                         </div>
                         <div className={styles.editInputBoxButtons}>
@@ -99,7 +111,7 @@ export default function Materials({materials}) {
                 )}
             </div>
             <div className={styles.addItemList}>
-                <AddMaterials setMaterialsList={setMaterialsList}/>
+                <AddMaterials materialsCategories={materialsCategories}  setMaterialsList={setMaterialsList}/>
             </div>
         </div>
 

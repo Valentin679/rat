@@ -71,7 +71,7 @@ export default function Page() {
                 <div className={styles.materials}>
                     <h2>Работа с сырьем</h2>
                     <div className={styles.materialsContainer}>
-                        <Materials materials={materials}/>
+                        <Materials materialsCategories={materialsCategories} materials={materials}/>
                         <CategoryMaterials materialsCategories={materialsCategories}/>
                     </div>
                 </div>

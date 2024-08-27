@@ -107,12 +107,13 @@ a {
   color: inherit;
   text-decoration: none;
 }
-input{
+input, select{
   padding: 7px 12px ;
   border-radius: 8px;
   border: 1px solid #d9dadc;
   font-size: 13px;
   background-color: #f7f8fa;
+  width: 100%;
 }
 
 input:hover {
@@ -120,6 +121,11 @@ input:hover {
 }
 input:focus-visible {
   border: 1px solid #5d768c !important;
+}
+option{
+  padding: 7px 12px ;
+  font-size: 13px;
+  background-color: #f7f8fa;
 }
 button{
   border: none;

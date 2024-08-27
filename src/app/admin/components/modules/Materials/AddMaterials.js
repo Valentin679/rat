@@ -1,8 +1,9 @@
 import styles from "@/app/admin/components/modules/Materials/materials.module.css";
-import {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {addCategory, addMaterials, GetMaterials} from "@/app/api/fetchMaterials";
+import SelectCategories from "@/app/admin/components/SelectCategories";
 
-export default function AddMaterials({setMaterialsList}) {
+export default function AddMaterials({setMaterialsList, materialsCategories}) {
     const inputSlugRef = useRef(null)
     const inputTitleRef = useRef(null)
     const inputPriceRef = useRef(null)
@@ -11,8 +12,7 @@ export default function AddMaterials({setMaterialsList}) {
     const [id, setId] = useState()
     const [title, setTitle] = useState()
     const [minimal_availability, setMinimal_availability] = useState()
-    const [category_id, setCategory_id] = useState()
-    const [category_title, setCategory_title] = useState()
+    const [category, setCategory] = useState()
     const [price, setPrice] = useState()
 
     const onChange = (e) => {
@@ -27,20 +27,18 @@ export default function AddMaterials({setMaterialsList}) {
         setStateAction && setStateAction(value);
         console.log(id + " ------------ " + title)
     };
-
     return (
         <div className={styles.addItemContainer}>
             <h4>Добавить новое сырье</h4>
             <form className={styles.addItemList} onSubmit={(event) => {
                 event.preventDefault()
-                addMaterials(id, title, price, minimal_availability,category_id,category_title).then(r => {
+                addMaterials(id, title, price, category).then(r => {
                     GetMaterials().then((res) => {
                         setMaterialsList(res)
-                        inputSlugRef.current.value = ''
+                        setCategory('')
                         inputTitleRef.current.value = ''
                         inputPriceRef.current.value = ''
-                        inputCategoryRef.current.value = ''
-                        inputMinRef.current.value = ''
+                        // inputMinRef.current.value = ''
                         console.log(id + " = " + title)
                     })
                 })
@@ -55,8 +53,7 @@ export default function AddMaterials({setMaterialsList}) {
                     {/*       defaultValue=""/>*/}
                     <input id="price" placeholder="Цена за грамм" onChange={onChange} type="number" name="price" ref={inputPriceRef}
                            defaultValue=""/>
-                    <input id="category" placeholder="Категория" onChange={onChange} type="text" name="category" ref={inputCategoryRef}
-                           defaultValue=""/>
+                    <SelectCategories setCategory={setCategory} categories={materialsCategories}/>
                     <input id="minimal_availability" placeholder="Минимум наличия" onChange={onChange} type="number" name="minimal_availability" ref={inputMinRef}
                            defaultValue=""/>
                 </div>

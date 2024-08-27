@@ -30,7 +30,15 @@
     font-weight: bold;
     color: #3770b1;
 }
-
+.itemInfo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.itemTitle{
+    padding-right: 20px;
+    }
 .item span {
     font-size: 11px;
     color: #8f8f8f;
