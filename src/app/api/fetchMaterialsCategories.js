@@ -46,7 +46,7 @@ export const putMaterialsCategory = async (slug, oldSlug, title) => {
 }
 
 export const deleteMaterialsCategory = async (slug) => {
-    await fetch('https://ratapi.vercel.app/api/materials-categories' + slug, {
+    await fetch('https://ratapi.vercel.app/api/materials-categories/' + slug, {
         method: 'DELETE',
         headers: {
             'Content-type': 'application/json; charset=utf-8'
