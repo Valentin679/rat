@@ -1,11 +1,11 @@
 'use client'
 import styles from "./admin.module.css";
-import Header from "@/app/admin/components/modules/Header/Header";
-import {useEffect, useState} from "react";
-import Materials from "@/app/admin/components/modules/Materials/Materials";
+import React, {useEffect, useState} from "react";
 import {GetMaterials} from "@/app/api/fetchMaterials";
-import CategoryMaterials from "@/app/admin/components/modules/Materials/CategoryMaterials";
 import {GetMaterialsCategories} from "@/app/api/fetchMaterialsCategories";
+import FormsContainer from "@/app/admin/components/modules/Forms/FormsContainer";
+import MaterialsContainer from "@/app/admin/components/modules/Materials/MaterialsContainer";
+
 
 export default function Page() {
     const [menu, setMenu] = useState([])
@@ -67,14 +67,9 @@ export default function Page() {
         return (
             <div className={styles.main}>
                 <h2>Админка</h2>
-                <Header menu={menu}/>
-                <div className={styles.materials}>
-                    <h2>Работа с сырьем</h2>
-                    <div className={styles.materialsContainer}>
-                        <Materials materialsCategories={materialsCategories} materials={materials}/>
-                        <CategoryMaterials materialsCategories={materialsCategories}/>
-                    </div>
-                </div>
+                {/*<Header menu={menu}/>*/}
+                <MaterialsContainer materialsCategories={materialsCategories} materials={materials}/>
+                <FormsContainer/>
             </div>
         )
     } else {
