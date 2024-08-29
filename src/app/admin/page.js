@@ -5,6 +5,7 @@ import {GetMaterials} from "@/app/api/fetchMaterials";
 import {GetMaterialsCategories} from "@/app/api/fetchMaterialsCategories";
 import FormsContainer from "@/app/admin/components/modules/Forms/FormsContainer";
 import MaterialsContainer from "@/app/admin/components/modules/Materials/MaterialsContainer";
+import SetsContainer from "@/app/admin/components/modules/Sets/SetsContainer";
 
 
 export default function Page() {
@@ -70,6 +71,7 @@ export default function Page() {
                 {/*<Header menu={menu}/>*/}
                 <MaterialsContainer materialsCategories={materialsCategories} materials={materials}/>
                 <FormsContainer/>
+                <SetsContainer/>
             </div>
         )
     } else {

@@ -8,6 +8,7 @@ import {MdCancelPresentation} from "react-icons/md";
 import SelectCategories from "@/app/admin/components/SelectCategories";
 import {Accordion, AccordionDetails, AccordionSummary} from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 export default function FormsContainer() {
     // const [materialsList, setMaterialsList] = useState([])
