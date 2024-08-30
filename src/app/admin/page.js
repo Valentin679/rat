@@ -69,8 +69,8 @@ export default function Page() {
             <div className={styles.main}>
                 <h2>Админка</h2>
                 {/*<Header menu={menu}/>*/}
-                <MaterialsContainer materialsCategories={materialsCategories} materials={materials}/>
-                <FormsContainer/>
+                {/*<MaterialsContainer materialsCategories={materialsCategories} materials={materials}/>*/}
+                {/*<FormsContainer/>*/}
                 <SetsContainer/>
             </div>
         )

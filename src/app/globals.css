@@ -107,41 +107,7 @@ a {
   color: inherit;
   text-decoration: none;
 }
-input, select{
-  padding: 7px 12px ;
-  border-radius: 8px;
-  border: 1px solid #d9dadc;
-  font-size: 13px;
-  background-color: #f7f8fa;
-  width: 100%;
-}
 
-input:hover {
-  border-color: #5d768c;
-}
-input:focus-visible {
-  border: 1px solid #5d768c !important;
-}
-option{
-  padding: 7px 12px ;
-  font-size: 13px;
-  background-color: #f7f8fa;
-}
-button{
-  border: none;
-  border-radius: 8px;
-  color: white;
-  width: 100%;
-  background-color: #447bba;
-  padding: 8px 0;
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-button:hover{
-    background-color: #4177b5;
-    cursor: pointer;
-}
 
 .container {
   max-width: 1360px;
