@@ -1,3 +1,13 @@
+.materialsContainer {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    height: 100vh;
+}
+.loading{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
 .container {
     display: flex;
     flex-direction: column;
@@ -30,15 +40,18 @@
     font-weight: bold;
     color: #3770b1;
 }
-.itemInfo{
+
+.itemInfo {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
 }
-.itemTitle{
+
+.itemTitle {
     padding-right: 20px;
-    }
+}
+
 .item span {
     font-size: 11px;
     color: #8f8f8f;
@@ -50,36 +63,47 @@
     padding: 5px 8px;
     /*color: white;*/
 }
+
 .itemEdit {
     border-radius: 50%;
     padding: 5px 8px;
     color: white;
 }
+
 .itemEdit:hover {
     background-color: #e4e5e9;
     cursor: pointer;
 }
+
 .itemEdit:active {
     background-color: #dadce2;
     cursor: pointer;
 }
-.itemEdit svg{
+
+.itemEdit svg {
     color: #447bbb;
     position: relative;
     top: 1px;
     left: 1px;
 }
+
 .cancelButton {
     width: max-content;
     background-color: #e8483f;
     padding: 5px 8px;
+    border: none;
+    border-radius: 8px;
+    color: white;
 }
+
 .cancelButton:hover {
     background-color: #dd4446;
+    cursor: pointer;
 }
+
 .cancelButton svg {
     position: relative;
-    top: 1px;
+    top: 2px;
 }
 
 .itemDelete {
@@ -87,19 +111,23 @@
     padding: 5px 8px;
     color: white;
 }
+
 .itemDelete:hover {
     background-color: #e4e5e9;
     cursor: pointer;
 }
+
 .itemDelete:active {
     background-color: #dadce2;
     cursor: pointer;
 }
-.itemDelete svg{
+
+.itemDelete svg {
     color: #e8483f;
     position: relative;
     top: 1px;
 }
+
 .addItemList {
     display: flex;
     gap: 20px;
@@ -107,6 +135,7 @@
     /*width: max-content;*/
     width: auto;
 }
+
 .addInputBox {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -118,7 +147,46 @@
     flex-direction: column;
     gap: 20px;
 }
+
 .editInputBoxButtons {
     display: flex;
     gap: 5px;
+}
+
+.button {
+    border: none;
+    border-radius: 8px;
+    color: white;
+    width: 100%;
+    background-color: #447bba;
+    padding: 8px 0;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.button:hover {
+    background-color: #4177b5;
+    cursor: pointer;
+    color: white;
+}
+.addInputBox>input, .addInputBox>select{
+    padding: 7px 12px ;
+    border-radius: 8px;
+    border: 1px solid #d9dadc;
+    font-size: 13px;
+    background-color: #f7f8fa;
+    width: 100%;
+}
+.addInputBox input:hover {
+    border-color: #5d768c;
+}
+.addInputBox input:focus-visible {
+    border: 1px solid #5d768c !important;
+}
+
+.addInputBox option{
+    padding: 7px 12px ;
+    font-size: 13px;
+    background-color: #f7f8fa;
 }

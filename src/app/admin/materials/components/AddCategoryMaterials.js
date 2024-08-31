@@ -1,4 +1,4 @@
-import styles from "@/app/admin/components/modules/Materials/materials.module.css";
+import styles from "@/app/admin/materials/materials.module.css";
 import {useRef, useState} from "react";
 import {
     addMaterialsCategory,
@@ -23,7 +23,7 @@ export default function AddCategoryMaterials({setCatList}) {
 
     return (
         <div className={styles.addItemContainer}>
-            <h4>Добавить новую категорию сырья</h4>
+            <h4>Добавить новую категорию</h4>
             <form className={styles.addItemList} onSubmit={(event) => {
                 event.preventDefault()
                 addMaterialsCategory(slug, title).then(r => {
@@ -44,7 +44,7 @@ export default function AddCategoryMaterials({setCatList}) {
                            defaultValue=""/>
                 </div>
 
-                <button type="submit">Добавить</button>
+                <button className={styles.button} type="submit">Добавить</button>
             </form>
         </div>
     )

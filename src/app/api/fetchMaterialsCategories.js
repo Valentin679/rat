@@ -7,7 +7,7 @@ export async function GetMaterialsCategories() {
     if (response.ok === true) {
         // получаем данные
         let res = await response.json();
-        console.log(res)
+        // console.log(res)
         // setPending(false)
         return res
     }

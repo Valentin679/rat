@@ -1,6 +1,6 @@
-import styles from "@/app/admin/components/modules/Materials/materials.module.css";
+import styles from "@/app/admin/materials/materials.module.css";
 import React, {useEffect, useRef, useState} from "react";
-import {addCategory, addMaterials, GetMaterials} from "@/app/api/fetchMaterials";
+import {addMaterials, GetMaterials} from "@/app/api/fetchMaterials";
 import SelectCategories from "@/app/admin/components/SelectCategories";
 
 export default function AddMaterials({setMaterialsList, materialsCategories}) {
@@ -58,7 +58,7 @@ export default function AddMaterials({setMaterialsList, materialsCategories}) {
                            defaultValue=""/>
                 </div>
 
-                <button type="submit">Добавить</button>
+                <button className={styles.button} type="submit">Добавить</button>
             </form>
         </div>
     )

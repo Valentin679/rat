@@ -1,6 +1,5 @@
 import "./../admin-global.css";
 import Select from 'react-select'
-import {useEffect, useState} from "react";
 
 
 export default function SelectCategories({categories, setCategory, initialCategory}) {

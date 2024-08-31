@@ -1,3 +1,10 @@
+.containerBar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px ;
+}
+
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
