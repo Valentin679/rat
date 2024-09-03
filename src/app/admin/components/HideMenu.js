@@ -16,7 +16,6 @@ import Link from "next/link";
 
 export default function HideMenu({menu, setOpenMenu, openMenu}) {
 
-
     const toggleDrawer = (newOpen) => () => {
         setOpenMenu(newOpen);
     };

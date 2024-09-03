@@ -1,7 +1,6 @@
 'use client'
 import React, {useEffect, useState} from 'react'
 import styles from "@/app/admin/admin.module.css";
-// import MenuItem from "@/app/admin/components/modules/Header/Menu/MenuItem";
 import HideMenu from "@/app/admin/components/HideMenu";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -10,18 +9,21 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import {usePathname} from "next/navigation";
+
+
+
 export default function Header() {
+    const pathname = usePathname()
 // console.log(menu)
     const [openMenu, setOpenMenu] = React.useState(false);
     const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [pending, setPending] = useState(true);
     const [menu, setMenu] = useState([]);
+    const [docTitle, setDocTitle] = useState()
 
     const handleChange = (event) => {
         setAuth(event.target.checked);
@@ -49,12 +51,20 @@ export default function Header() {
             return menuList
         }
     }
+    const getTitle = () => {
+        let title = document.title
+        setDocTitle(title)
+    }
+
     useEffect(() => {
         getMenu().then((menu) => {
             setMenu(menu)
             console.log(menu)
         })
     }, []);
+    useEffect(() => {
+        getTitle()
+    }, [pathname]);
     return (
         <Box sx={{flexGrow: 1}} >
             {/*<FormGroup>*/}
@@ -85,7 +95,7 @@ export default function Header() {
                         <MenuIcon/>
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
-                        Админ-панель
+                        Админ-панель / { docTitle }
                     </Typography>
                     {auth && (
                         <div>
