@@ -59,7 +59,7 @@ export default function Header() {
     useEffect(() => {
         getMenu().then((menu) => {
             setMenu(menu)
-            console.log(menu)
+            // console.log(menu)
         })
     }, []);
     useEffect(() => {

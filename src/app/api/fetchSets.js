@@ -1,5 +1,5 @@
-export async function getFiltersCategories() {
-    const response = await fetch("https://ratapi.vercel.app/api/filters/categories", {
+export async function getSets() {
+    const response = await fetch("https://ratapi.vercel.app/api/products/sets", {
         method: "GET",
         headers: { "Accept": "application/json" }
     });
@@ -7,44 +7,22 @@ export async function getFiltersCategories() {
     if (response.ok === true) {
         // получаем данные
         let res = await response.json();
-        console.log(res)
+        // console.log(res)
         // setPending(false)
         return res
     }
 }
 
-export async function getFilterOneCategory(slug) {
-    const response = await fetch("https://ratapi.vercel.app/api/filters/categories/" + slug, {
-        method: "GET",
-        headers: { "Accept": "application/json" }
-    });
-    // если запрос прошел нормально
-    if (response.ok === true) {
-        // получаем данные
-        let res = await response.json();
-        console.log(res)
-        // setPending(false)
-        return res
-    }
+export const addSets = async (body) => {
+    await fetch('https://ratapi.vercel.app/api/products/sets', {
+        method: 'POST',
+        //
+        body: JSON.stringify(body),
+        headers: {
+            'Content-type': 'application/json; charset=utf-8'
+        }
+    })
 }
-
-// export const addMaterials = async (id, title, price, category) => {
-//     await fetch('https://ratapi.vercel.app/api/materials', {
-//         method: 'POST',
-//         //
-//         body: JSON.stringify({
-//             title,
-//             price,
-//             category: category.value,
-//             categoryTitle: category.label
-//
-//
-//         }),
-//         headers: {
-//             'Content-type': 'application/json; charset=utf-8'
-//         }
-//     })
-// }
 //
 //
 // export const putMaterials = async (changedMaterialsId, title, category, price) => {

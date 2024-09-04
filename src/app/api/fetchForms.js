@@ -1,20 +1,5 @@
-export async function getFiltersCategories() {
-    const response = await fetch("https://ratapi.vercel.app/api/filters/categories", {
-        method: "GET",
-        headers: { "Accept": "application/json" }
-    });
-    // если запрос прошел нормально
-    if (response.ok === true) {
-        // получаем данные
-        let res = await response.json();
-        console.log(res)
-        // setPending(false)
-        return res
-    }
-}
-
-export async function getFilterOneCategory(slug) {
-    const response = await fetch("https://ratapi.vercel.app/api/filters/categories/" + slug, {
+export async function getForms() {
+    const response = await fetch("https://ratapi.vercel.app/api/products/forms", {
         method: "GET",
         headers: { "Accept": "application/json" }
     });
