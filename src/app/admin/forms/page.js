@@ -22,9 +22,9 @@ export default function Page() {
                 <div>Filter</div>
                 {/*<AddSet/>*/}
 
-                <Link href={'forms/add_form'}>Добавить набор</Link>
+                <Link href={'forms/add_form'}>Добавить форму</Link>
             </div>
-            {forms.map(form => <FormItem form={form}/>)}
+            {forms.map(form => <FormItem key={form.slug} form={form}/>)}
             {/*<FormItem/>*/}
         </>
     )}

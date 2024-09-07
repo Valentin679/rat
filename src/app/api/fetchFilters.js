@@ -7,7 +7,7 @@ export async function getFiltersCategories() {
     if (response.ok === true) {
         // получаем данные
         let res = await response.json();
-        console.log(res)
+        // console.log(res)
         // setPending(false)
         return res
     }
@@ -22,7 +22,7 @@ export async function getFilterOneCategory(slug) {
     if (response.ok === true) {
         // получаем данные
         let res = await response.json();
-        console.log(res)
+        // console.log(res)
         // setPending(false)
         return res
     }

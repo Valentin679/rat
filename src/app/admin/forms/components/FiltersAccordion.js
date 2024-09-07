@@ -8,11 +8,26 @@ import {useCallback, useEffect, useState} from "react";
 import {getFilterOneCategory, getFiltersCategories} from "@/app/api/fetchFilters";
 import AccordionItem from "@/app/admin/forms/components/AccordionItem";
 
-export default function FiltersAccordion() {
+export default function FiltersAccordion({selectedProduction, setSelectedProduction}) {
     const [expanded, setExpanded] = React.useState(false);
     const [AllTagsList, setAllTagsList] = useState([])
     const [nowTags, setNowTags] = useState([])
     const [pending, setPending] = useState(false)
+    const [checked, setChecked] = React.useState([]);
+
+    const handleToggle = (value) => () => {
+        const currentIndex = checked.indexOf(value);
+        const newChecked = [...checked];
+
+        if (currentIndex === -1) {
+            newChecked.push(value);
+        } else {
+            newChecked.splice(currentIndex, 1);
+        }
+
+        setChecked(newChecked);
+        console.log(checked)
+    };
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
         setPending(true)
@@ -33,7 +48,11 @@ export default function FiltersAccordion() {
 
     return (
         <div>
-            {AllTagsList.map(tag=><AccordionItem tag={tag} nowTags={nowTags} expanded={expanded} pending={pending} handleChange={handleChange}/>)}
+            {AllTagsList.map(tag=><AccordionItem key={tag.slug}
+                                                 checked={checked}
+                                                 handleToggle={handleToggle}
+                                                 selectedProduction={selectedProduction} setSelectedProduction={setSelectedProduction}
+                                                 tag={tag} nowTags={nowTags} expanded={expanded} pending={pending} handleChange={handleChange}/>)}
         </div>
     );
 }
