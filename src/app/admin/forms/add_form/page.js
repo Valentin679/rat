@@ -8,6 +8,7 @@ import Box from "@mui/material/Box";
 import {useState} from "react";
 import {useRouter} from "next/navigation";
 import Tags from "@/app/admin/forms/add_form/components/tags/Tags";
+import Materials from "@/app/admin/forms/add_form/components/materials/Materials";
 
 export default function AddForm() {
     const [title, setTitle] = React.useState('');
@@ -68,6 +69,7 @@ export default function AddForm() {
                         setImgLink(event.target.value);
                     }}
                 />
+                <Materials/>
                 <Tags/>
 
                 <Button variant="outlined" onClick={()=>{}}>

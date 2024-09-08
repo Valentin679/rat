@@ -1,4 +1,4 @@
-import "./../admin-global.css";
+// import "./../admin-global.css";
 import Select from 'react-select'
 
 

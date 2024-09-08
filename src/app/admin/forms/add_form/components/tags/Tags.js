@@ -7,17 +7,17 @@ import TagsLabel from "@/app/admin/forms/add_form/components/tags/TagsLabel";
 import {CircularProgress} from "@mui/material";
 
 export default function Tags() {
-    const [AllTagsList, setAllTagsList] = useState([])
+    const [allTagsList, setAllTagsList] = useState([])
     const [selectedTags, setSelectedTags] = useState([])
     const [pending, setPending] = useState()
 
     useEffect(() => {
-        if (AllTagsList.length === 0)  {
+        if (allTagsList.length === 0)  {
             setPending(true)
         } else {
             setPending(false)
         }
-    }, [AllTagsList]);
+    }, [allTagsList]);
     useEffect(() => {
         getFiltersCategories().then((tags) => {
             setAllTagsList(tags)
@@ -37,7 +37,7 @@ export default function Tags() {
                     <div><TagsLabel selectedTags={selectedTags}/></div>
                 </div>
                 <Grid container spacing={2}>
-                    {AllTagsList.map(tag => <div key={tag.slug}><TagsItem selectedTags={selectedTags}
+                    {allTagsList.map(tag => <div key={tag.slug}><TagsItem selectedTags={selectedTags}
                                                                           setSelectedTags={setSelectedTags}
                                                                           tag={tag}/>
                     </div>)}
