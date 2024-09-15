@@ -65,6 +65,8 @@ export default function Header() {
     useEffect(() => {
         getTitle()
     }, [pathname]);
+
+
     return (
         <Box sx={{flexGrow: 1}} >
             {/*<FormGroup>*/}

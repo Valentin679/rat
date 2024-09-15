@@ -52,7 +52,7 @@ export default function TagsItem({tag, setSelectedTags, selectedTags}) {
                     nowTags.map(nowTag => {
 
                     const labelId = `checkbox-list-label-${nowTag.slug}`;
-                    if (nowTag) {
+                    if (nowTag.length !==0) {
                     return (
                         <ListItem
                             key={nowTag.slug}
@@ -70,9 +70,7 @@ export default function TagsItem({tag, setSelectedTags, selectedTags}) {
                                 <ListItemText id={labelId} primary={`${nowTag.title}`}/>
                             </ListItemButton>
                         </ListItem>
-                    );} else {
-                        <div><CircularProgress /></div>
-                    }
+                    );} else {return <CircularProgress />}
                 })
                 }
                 {nowTags.length === 0 ?

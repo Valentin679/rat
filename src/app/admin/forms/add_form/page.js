@@ -5,30 +5,59 @@ import {
     TextField
 } from "@mui/material";
 import Box from "@mui/material/Box";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 import Tags from "@/app/admin/forms/add_form/components/tags/Tags";
 import Materials from "@/app/admin/forms/add_form/components/materials/Materials";
+import {addForm} from "@/app/api/fetchForms";
 
 export default function AddForm() {
     const [title, setTitle] = React.useState('');
     const [imgLink, setImgLink] = React.useState('');
     const [slug, setSlug] = useState('')
+    const [selectedMaterials, setSelectedMaterials] = useState([])
+    const [selectedTags, setSelectedTags] = useState([])
+    const [price, setPrice] = useState(0)
+    const [weight, setWeight] = useState(0)
 
-    // const postSet = () => {
-    //     const document = {
-    //         slug: slug,
-    //         title: title,
-    //         imageLink: imgLink,
-    //         products: selectedProduction
-    //     }
-    //     addSets(document).then(res => {
-    //         setTitle('')
-    //         setImgLink('')
-    //         setSlug('')
-    //         setSelectedProduction([])
-    //     })
-    // };
+    function countPrice() {
+        let price = 0
+        let weightForm = 0
+        selectedMaterials.map(material => {
+            let matPriceGramm = material.price / 1000
+            let weight = Number(material.weight)
+            weightForm = weightForm + weight
+            price = Math.round(matPriceGramm * weight + price)
+            // console.log(price)
+            setWeight(weightForm)
+            setPrice(price)
+        })
+    }
+
+    useEffect(() => {
+        countPrice()
+    }, [selectedMaterials]);
+
+    const formSet = () => {
+        const document = {
+            slug: slug,
+            title: title,
+            imageLink: imgLink,
+            price: price,
+            weight: weight,
+            materials: selectedMaterials,
+            tags: selectedTags
+        }
+        // console.log(document)
+        addForm(document).then(res => {
+            setTitle('')
+            setImgLink('')
+            setSlug('')
+            setPrice(0)
+            setSelectedMaterials([])
+            setSelectedTags([])
+        })
+    };
 
 
     const router = useRouter();
@@ -69,10 +98,16 @@ export default function AddForm() {
                         setImgLink(event.target.value);
                     }}
                 />
-                <Materials/>
-                <Tags/>
+                <Materials selectedMaterials={selectedMaterials}
+                           setSelectedMaterials={setSelectedMaterials}
+                />
+                <Tags selectedTags={selectedTags}
+                      setSelectedTags={setSelectedTags}
+                />
 
-                <Button variant="outlined" onClick={()=>{}}>
+                <Button variant="outlined" onClick={()=>{
+                    formSet()
+                }}>
                     Добавить форму
                 </Button>
                 <Button variant="outlined" onClick={() => router.back()}>

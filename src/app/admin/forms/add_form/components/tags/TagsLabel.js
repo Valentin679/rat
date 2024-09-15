@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 export default function TagsLabel({selectedTags}) {
-
     return (
         <div style={{
             display: 'flex',

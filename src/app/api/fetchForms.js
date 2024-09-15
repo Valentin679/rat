@@ -13,23 +13,25 @@ export async function getForms() {
     }
 }
 
-// export const addMaterials = async (id, title, price, category) => {
-//     await fetch('https://ratapi.vercel.app/api/materials', {
-//         method: 'POST',
-//         //
-//         body: JSON.stringify({
-//             title,
-//             price,
-//             category: category.value,
-//             categoryTitle: category.label
-//
-//
-//         }),
-//         headers: {
-//             'Content-type': 'application/json; charset=utf-8'
-//         }
-//     })
-// }
+export const addForm = async (body) => {
+    await fetch('https://ratapi.vercel.app/api/products/forms', {
+        method: 'POST',
+        //
+        body: JSON.stringify(body),
+        headers: {
+            'Content-type': 'application/json; charset=utf-8'
+        }
+    })
+}
+
+export const deleteForm = async (id) => {
+    await fetch('https://ratapi.vercel.app/api/products/forms/' + id, {
+        method: 'DELETE',
+        headers: {
+            'Content-type': 'application/json; charset=utf-8'
+        }
+    })
+}
 //
 //
 // export const putMaterials = async (changedMaterialsId, title, category, price) => {

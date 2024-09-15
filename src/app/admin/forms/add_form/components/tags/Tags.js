@@ -6,9 +6,8 @@ import Grid from "@mui/material/Grid";
 import TagsLabel from "@/app/admin/forms/add_form/components/tags/TagsLabel";
 import {CircularProgress} from "@mui/material";
 
-export default function Tags() {
+export default function Tags({selectedTags, setSelectedTags}) {
     const [allTagsList, setAllTagsList] = useState([])
-    const [selectedTags, setSelectedTags] = useState([])
     const [pending, setPending] = useState()
 
     useEffect(() => {
@@ -24,9 +23,7 @@ export default function Tags() {
             // setPending(false)
         })
     }, []);
-    if (pending === true) {
-        <div><CircularProgress/></div>
-    } else {
+    if (pending === true) {return <CircularProgress/>} else {
         return (
             <>
                 <div style={{

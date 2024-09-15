@@ -9,22 +9,22 @@ export default function Page() {
     const [menu, setMenu] = useState([])
     const [materialsCategories, setMaterialsCategories] = useState([])
     const [materials, setMaterials] = useState([])
-    const [pending, setPending] = useState(true)
+    const [pending, setPending] = useState(false)
 
-    async function GetUsers() {
-        const response = await fetch("https://ratapi.vercel.app/api/users", {
-            method: "GET",
-            headers: {"Accept": "application/json"}
-        });
-        // если запрос прошел нормально
-        if (response.ok === true) {
-            // получаем данные
-            let menuList = await response.json();
-            // console.log(menuList)
-            setPending(false)
-            return menuList
-        }
-    }
+    // async function GetUsers() {
+    //     const response = await fetch("https://ratapi.vercel.app/api/users", {
+    //         method: "GET",
+    //         headers: {"Accept": "application/json"}
+    //     });
+    //     // если запрос прошел нормально
+    //     if (response.ok === true) {
+    //         // получаем данные
+    //         let menuList = await response.json();
+    //         // console.log(menuList)
+    //         setPending(false)
+    //         return menuList
+    //     }
+    // }
 
     // async function GetCategories() {
     //     const response = await fetch("https://ratapi.vercel.app/api/categories", {
@@ -41,26 +41,26 @@ export default function Page() {
     //     }
     // }
 
-    useEffect(() => {
-        GetMaterialsCategories().then((materialsCategories) => {
-            setMaterialsCategories(materialsCategories)
-        })
-        GetMaterials().then((materials) => {
-            setMaterials(materials)
-        })
-    }, []);
-    useEffect(() => {
-        GetUsers().then((menu) => {
-            setMenu(menu)
-        })
-    }, []);
-    useEffect(() => {
-        if (materialsCategories.length === 0 && !materials && !menu) {
-            setPending(true)
-        } else {
-            setPending(false)
-        }
-    }, [menu, materialsCategories, materials]);
+    // useEffect(() => {
+    //     GetMaterialsCategories().then((materialsCategories) => {
+    //         setMaterialsCategories(materialsCategories)
+    //     })
+    //     GetMaterials().then((materials) => {
+    //         setMaterials(materials)
+    //     })
+    // }, []);
+    // useEffect(() => {
+    //     GetUsers().then((menu) => {
+    //         setMenu(menu)
+    //     })
+    // }, []);
+    // useEffect(() => {
+    //     if (materialsCategories.length === 0 && !materials && !menu) {
+    //         setPending(true)
+    //     } else {
+    //         setPending(false)
+    //     }
+    // }, [menu, materialsCategories, materials]);
     if (pending === false) {
         return (
             <div className={styles.main}>

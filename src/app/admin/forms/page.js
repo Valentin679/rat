@@ -12,10 +12,14 @@ export default function Page() {
     useEffect(() => {
         getForms().then(res=>{
             setForms(res)
-            console.log(forms)
+            // console.log(forms)
         })
     }, []);
-    if (forms.length === 0) {<CircularProgress />} else {
+
+    useEffect(() => {
+
+    }, [forms]);
+    if (forms.length === 0) {return <CircularProgress />} else {
     return (
         <>
             <div className={styles.containerBar}>
@@ -24,7 +28,10 @@ export default function Page() {
 
                 <Link href={'forms/add_form'}>Добавить форму</Link>
             </div>
-            {forms.map(form => <FormItem key={form.slug} form={form}/>)}
+            <div className={styles.formList}>
+                {forms.map(form => <FormItem key={form.slug} form={form} setForms={setForms}/>)}
+            </div>
+
             {/*<FormItem/>*/}
         </>
     )}

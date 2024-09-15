@@ -16,7 +16,7 @@ export default function Page() {
             // console.log(sets)
         })
     }, []);
-    if (sets.length === 0) {<CircularProgress />} else {
+    if (sets.length === 0) {return <CircularProgress />} else {
     return (
         <>
             <div className={styles.containerBar}>
